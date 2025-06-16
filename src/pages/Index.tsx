@@ -3,23 +3,40 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Eye, EyeOff, Zap } from "lucide-react";
+import { Eye, EyeOff, Heart, Home } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate authentication and redirect to chat
+    navigate("/chat");
+  };
 
   return (
     <div className="min-h-screen flex">
       {/* Left side - Sign in form */}
       <div className="flex-1 flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md space-y-6">
+          {/* Back to Home Button */}
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/")}
+            className="mb-4 text-gray-600 hover:text-gray-900"
+          >
+            <Home className="w-4 h-4 mr-2" />
+            Back to Home
+          </Button>
+
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold text-gray-900">Welcome back!</h1>
-            <p className="text-gray-600">Sign in to your account to continue</p>
+            <h1 className="text-3xl font-bold text-gray-900">Welcome to SOS AI!</h1>
+            <p className="text-gray-600">Your personal AI therapist companion</p>
           </div>
 
           {/* Tab buttons */}
@@ -67,7 +84,7 @@ const Index = () => {
           </div>
 
           {/* Email and password form */}
-          <div className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
               <Input
@@ -77,6 +94,7 @@ const Index = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-12"
+                required
               />
             </div>
 
@@ -90,6 +108,7 @@ const Index = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="h-12 pr-10"
+                  required
                 />
                 <button
                   type="button"
@@ -107,47 +126,48 @@ const Index = () => {
               </a>
             </div>
 
-            <Button className="w-full h-12 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+            <Button type="submit" className="w-full h-12 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700">
               {isSignUp ? "Sign Up" : "Sign In"}
             </Button>
 
             <p className="text-center text-sm text-gray-600">
               {isSignUp ? "Already have an account? " : "Don't have an account? "}
               <button
+                type="button"
                 onClick={() => setIsSignUp(!isSignUp)}
                 className="text-blue-600 hover:underline font-medium"
               >
                 {isSignUp ? "Sign in here" : "Sign up here"}
               </button>
             </p>
-          </div>
+          </form>
         </div>
       </div>
 
       {/* Right side - Branding */}
-      <div className="flex-1 bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center p-8">
+      <div className="flex-1 bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center p-8">
         <div className="text-center space-y-6 max-w-md">
-          <div className="mx-auto w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
-            <Zap className="w-10 h-10 text-white" />
+          <div className="mx-auto w-20 h-20 bg-gradient-to-br from-green-500 to-blue-500 rounded-2xl flex items-center justify-center">
+            <Heart className="w-10 h-10 text-white" />
           </div>
           
           <div className="space-y-4">
             <h2 className="text-4xl font-bold text-gray-900">
-              Join the Future of Productivity
+              Your Mental Health Companion
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Discover tools designed for the next generation. Streamline your workflow, collaborate seamlessly, and achieve more than ever before.
+              Connect with SOS AI for compassionate, 24/7 mental health support. Get personalized guidance and caring conversations whenever you need them.
             </p>
           </div>
 
           <div className="flex justify-center space-x-8 text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="text-gray-600">Secure & Private</span>
+              <span className="text-gray-600">Safe & Confidential</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span className="text-gray-600">Always Free</span>
+              <span className="text-gray-600">Always Available</span>
             </div>
           </div>
         </div>
