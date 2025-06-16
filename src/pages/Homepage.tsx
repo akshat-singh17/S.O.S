@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Heart, MessageCircle, Shield, Clock } from "lucide-react";
+import { Heart, MessageCircle, Shield, Clock, User, History, Info } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
@@ -18,12 +18,20 @@ const Homepage = () => {
               </div>
               <h1 className="text-2xl font-bold text-gray-900">SOS AI</h1>
             </div>
-            <Button 
-              onClick={() => navigate("/auth")}
-              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
-            >
-              Get Started
-            </Button>
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
+                <Info className="w-4 h-4 mr-2" />
+                About
+              </Button>
+              <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
+                <User className="w-4 h-4 mr-2" />
+                Account
+              </Button>
+              <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
+                <History className="w-4 h-4 mr-2" />
+                Chat History
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -46,7 +54,7 @@ const Homepage = () => {
               onClick={() => navigate("/auth")}
               className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-lg px-8 py-4"
             >
-              Start Your Journey
+              Begin Your Conversation
             </Button>
             <Button 
               size="lg"
@@ -104,7 +112,7 @@ const Homepage = () => {
             onClick={() => navigate("/auth")}
             className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-lg px-12 py-4"
           >
-            Begin Your Conversation
+            Start Your Journey
           </Button>
         </div>
       </main>
